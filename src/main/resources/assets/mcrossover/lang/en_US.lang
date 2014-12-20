@@ -1,0 +1,111 @@
+material.yellowdecorative=Yellow Decorative
+material.reddecorative=Red Decorative
+material.bluedecorative=Blue Decorative
+material.greendecorative=Green Decorative
+material.whitedecorative=White Decorative
+material.blackdecorative=Black Decorative
+
+material.angmallen=Angmallen
+material.damascussteel=Damascus Steel
+material.hepatizon=Hepatizon
+material.brass=Brass
+material.electrum=Electrum
+material.platinum=Platinum
+material.silver=Silver
+material.amordrine=Amordrine
+material.ceruclase=Ceruclase
+material.ignatius=Ignatius
+material.inolashite=Inolashite
+material.kalendrite=Kalendrite
+material.midasium=Midasium
+material.sanguinite=Sanguinite
+material.shadowiron=Shadow Iron
+material.shadowsteel=Shadow Steel
+material.vulcanite=Vulcanite
+material.vyroxeres=Vyroxeres
+material.adamantine=Adamantine
+material.astralsilver=Astral Silver
+material.atlarus=Atlarus
+material.blacksteel=Black Steel
+material.carmot=Carmot
+material.celenegil=Celenegil
+material.deepiron=Deep Iron
+material.haderoth=Haderoth
+material.mithril=Mithril
+material.orichalcum=Orichalcum
+material.oureclase=Oureclase
+material.prometheum=Prometheum
+material.quicksilver=Quicksilver
+material.tartarite=Tartarite
+material.desichalkos=Desichalkos
+material.eximite=Eximite
+
+material.enderiron=Ender Iron
+material.mindsteel=Mind Steel
+material.startmetal=Start Metal
+material.start=Start
+
+tile.fluid.molten.yellowdecorative=Molten Yellow Decorative
+tile.fluid.molten.reddecorative=Molten Red Decorative
+tile.fluid.molten.bluedecorative=Molten Blue Decorative
+tile.fluid.molten.greendecorative=Molten Green Decorative
+tile.fluid.molten.whitedecorative=Molten White Decorative
+tile.fluid.molten.blackdecorative=Molten Black Decorative
+
+tile.fluid.molten.enderiron=Molten Ender Iron
+tile.fluid.molten.mindsteel=Molten Mind Steel
+tile.fluid.molten.startmetal=Molten Start Metal
+tile.fluid.molten.start=Molten Start
+
+tile.ore.yellow=Yellow Decorative Ore
+tile.ore.red=Red Decorative Ore
+tile.ore.blue=Blue Decorative Ore
+tile.ore.green=Green Decorative Ore
+tile.ore.white=White Decorative Ore
+tile.ore.black=Black Decorative Ore
+
+tile.block.yellow=Yellow Decorative Block
+tile.block.red=Red Decorative Block
+tile.block.blue=Blue Decorative Block
+tile.block.green=Green Decorative Block
+tile.block.white=White Decorative Block
+tile.block.black=Black Decorative Block
+
+tile.enderiron.block=Ender Iron Block
+tile.mindsteel.block=Mind Steel Block
+tile.startmetal.block=Start Metal Block
+tile.start.block=Start Block
+
+fluid.molten.yellowdecorative=Molten Yellow Decorative
+fluid.molten.reddecorative=Molten Red Decorative
+fluid.molten.bluedecorative=Molten Blue Decorative
+fluid.molten.greendecorative=Molten Green Decorative
+fluid.molten.whitedecorative=Molten White Decorative
+fluid.molten.blackdecorative=Molten Black Decorative
+
+fluid.molten.enderiron=Molten Ender Iron
+fluid.molten.mindsteel=Molten Mind Steel 
+fluid.molten.startmetal=Molten Start Metal 
+fluid.molten.start=Molten Start 
+
+item.crystal.start.name=Start Crystal
+item.ingot.ender.name=Ender Iron Ingot
+item.ingot.mindsteel.name=Mind Steel Ingot
+item.ingot.start.name=Start Metal Ingot
+item.crystal.start.name=Start Crystal
+
+item.ingot.yellow.name=Yellow Ingot
+item.ingot.red.name=Red Ingot
+item.ingot.blue.name=Blue Ingot
+item.ingot.green.name=Green Ingot
+item.ingot.white.name=White Ingot
+item.ingot.black.name=Black Ingot
+
+item.dust.yellow.name=Yellow Dust
+item.dust.red.name=Red Dust
+item.dust.blue.name=Blue Dust
+item.dust.green.name=Green Dust
+item.dust.white.name=White Dust
+item.dust.black.name=Black Dust
+
+toolpart.Ball=%%material Ball
