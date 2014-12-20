@@ -1,16 +1,21 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
+  "modid": "mcrossover",
+  "name": "Mindcrafts Crossover Mod",
+  "description": "A mod that make a link between some mods",
+  "credits": "",
+  "logoFile": "",
+  "version": "$version",
+  "mcversion": "$mcversion",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
+  "authorList": [
+    "Edwin Mindcraft"
+  ],
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
 }
 ]
