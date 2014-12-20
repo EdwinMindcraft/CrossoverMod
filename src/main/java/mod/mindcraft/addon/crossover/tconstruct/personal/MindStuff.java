@@ -119,6 +119,10 @@ public class MindStuff {
 		TiCUtils.registerUnknownThing(new ItemStack(ingotEnderIron), new ItemStack(moltenEnderIronBlock), "EnderIron");
 		TiCUtils.registerUnknownThing(new ItemStack(ingotStartMetal), new ItemStack(moltenStartMetalBlock), "StartMetal");
 		TiCUtils.registerUnknownThing(new ItemStack(ingotMindSteel), new ItemStack(moltenMindSteelBlock), "MindSteel");
+		
+		CrossoverMain.addBlockRecipe(ingotEnderIron, moltenEnderIronBlock);
+		CrossoverMain.addBlockRecipe(ingotMindSteel, moltenMindSteelBlock);
+		CrossoverMain.addBlockRecipe(ingotStartMetal, moltenStartMetalBlock);
 	}
 	
 	@Handler
