@@ -1,5 +1,4 @@
 /*
- * Tinkers Construct
  * Master build file
  * 
  * Authors: Sunstrike, ProgWML6
@@ -50,7 +49,7 @@ repositories {
 
 // Load ForgeGradle
 apply plugin: 'forge'
-group = 'tconstruct'
+group = 'mod.mindcraft.crossover'
 
 // Define properties file
 ext.configFile = file "build.properties"

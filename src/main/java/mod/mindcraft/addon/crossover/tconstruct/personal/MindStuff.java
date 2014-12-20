@@ -10,6 +10,7 @@ import mod.mindcraft.addon.crossover.tconstruct.utils.BlockMetalCustom;
 import mod.mindcraft.addon.crossover.tconstruct.utils.TiCUtils;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -61,7 +62,7 @@ public class MindStuff {
 		mindsteelEntry = TiCUtils.registerMaterial(150, "MindSteel", moltenMindSteelFluid, moltenMindSteel, moltenMindSteelBlock, 550, true);
 		moltenMindSteel = mindsteelEntry.getKey();
 		moltenMindSteelFluid = mindsteelEntry.getValue();
-		TiCUtils.registerPartMaterial(150, "MindSteel", 5, 2500, 2000, 10, 2.4F, 3, 0F, EnumChatFormatting.LIGHT_PURPLE.toString(), 0xff99ff, 50, 5.5F, 0F, 1F);
+		TiCUtils.registerPartMaterial(150, "MindSteel", 5, 2500, 3000, 20, 2.4F, 3, 0F, EnumChatFormatting.LIGHT_PURPLE.toString(), 0xff99ff, 20, 9F, 0.05F, 1F);
 	
 		moltenEnderIronBlock = new BlockMetalCustom().setHardness(2.0F).setBlockName("enderiron.block").setBlockTextureName("mcrossover:mindstuff/block_enderiron");
 		GameRegistry.registerBlock(moltenEnderIronBlock, "enderiron.block");
@@ -69,7 +70,7 @@ public class MindStuff {
 		enderEntry = TiCUtils.registerMaterial(151, "EnderIron", moltenEnderIronFluid, moltenEnderIron, moltenEnderIronBlock, 550, true);
 		moltenEnderIron = enderEntry.getKey();
 		moltenEnderIronFluid = enderEntry.getValue();
-		TiCUtils.registerPartMaterial(151, "EnderIron", 4, 1000, 10000, 20, 1.0F, 1, 0F, EnumChatFormatting.GREEN.toString(), 0x13523b, 3, 5.5F, 0F, 1F);		
+		TiCUtils.registerPartMaterial(151, "EnderIron", 4, 1000, 1000, 10, 2.0F, 0, 0F, EnumChatFormatting.GREEN.toString(), 0x13523b, 30, 5.5F, 1F, 1F);		
 
 		moltenStartMetalBlock = new BlockMetalCustom().setHardness(2.0F).setBlockName("startmetal.block").setBlockTextureName("mcrossover:mindstuff/block_startmetal");
 		GameRegistry.registerBlock(moltenStartMetalBlock, "startmetal.block");
@@ -77,7 +78,7 @@ public class MindStuff {
 		startEntry = TiCUtils.registerMaterial(152, "StartMetal", moltenStartMetalFluid, moltenStartMetal, moltenStartMetalBlock, 550, true);
 		moltenStartMetal = startEntry.getKey();
 		moltenStartMetalFluid = startEntry.getValue();
-		TiCUtils.registerPartMaterial(152, "StartMetal", 4, 2000, 10000, 20, 1.0F, 1, 0F, EnumChatFormatting.WHITE.toString(), 0xffeeff, 3, 5.5F, 0F, 1F);	
+		TiCUtils.registerPartMaterial(152, "StartMetal", 4, 2000, 2500, 15, 0.5F, 2, 0F, EnumChatFormatting.WHITE.toString(), 0xffeeff, 10, 5.5F, 0.25F, 1F);	
 
 		moltenStartBlock = new BlockMetalCustom().setHardness(2.0F).setBlockName("start.block").setBlockTextureName("mcrossover:mindstuff/block_start");
 		GameRegistry.registerBlock(moltenStartBlock, "start.block");
@@ -132,21 +133,30 @@ public class MindStuff {
 	
 	private void addRecipes() {
 		GameRegistry.addRecipe(new ItemStack(startCrystal), new Object[]{
-			" I ",
+			"OIO",
 			"HGH",
-			" I ",
-			Character.valueOf('G'), Items.emerald,
+			"OIO",
+			Character.valueOf('G'), Items.nether_star,
 			Character.valueOf('I'), Items.blaze_rod,
-			Character.valueOf('H'), Items.ender_pearl
+			Character.valueOf('H'), Items.ender_pearl,
+			Character.valueOf('O'), Items.diamond
 		});
 		
 		GameRegistry.addRecipe(new ItemStack(startCrystal), new Object[]{
-			" H ",
+			"OHO",
 			"IGI",
-			" H ",
-			Character.valueOf('G'), Items.emerald,
+			"OHO",
+			Character.valueOf('G'), Items.nether_star,
 			Character.valueOf('I'), Items.blaze_rod,
-			Character.valueOf('H'), Items.ender_pearl
+			Character.valueOf('H'), Items.ender_pearl,
+			Character.valueOf('O'), Items.diamond
+		});
+		GameRegistry.addRecipe(new ItemStack(Blocks.dragon_egg), new Object[]{
+			"III",
+			"IGI",
+			"III",
+			Character.valueOf('I'), startCrystal,
+			Character.valueOf('G'), moltenEnderIronBlock
 		});
 	}
 	

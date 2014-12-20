@@ -34,7 +34,7 @@ public class TiCUtils {
 	
 	public static Entry registerMaterial(int fluidId, String fluidName, Fluid fluid, Block fluidBlock, Block metalBlock, int meltTemperature, boolean isToolPart) {
 		
-		fluid = new Fluid(fluidName.toLowerCase() + ".molten").setDensity(3000).setViscosity(6000).setTemperature(1300);
+		fluid = new Fluid( "molten." +fluidName.toLowerCase()).setDensity(3000).setViscosity(6000).setTemperature(1300);
 		boolean isFluidPreReg = !FluidRegistry.registerFluid(fluid);
 		fluidBlock = new CrossoverFluidBlock(fluid, fluidName.toLowerCase()).setBlockName("fluid.molten." + fluidName.toLowerCase());
 		GameRegistry.registerBlock(fluidBlock, "fluid.molten." + fluidName.toLowerCase());
