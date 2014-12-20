@@ -55,7 +55,7 @@ public class MindStuff {
 	@Handler
 	public void preInit(FMLPreInitializationEvent e) {
 		
-		moltenMindSteelBlock = new BlockMetalCustom().setHardness(2.0F).setBlockName("mindsteel.block").setBlockTextureName("mcrossover:mindstuff/mindsteel_block");
+		moltenMindSteelBlock = new BlockMetalCustom().setHardness(2.0F).setBlockName("mindsteel.block").setBlockTextureName("mcrossover:mindstuff/block_mindsteel");
 		GameRegistry.registerBlock(moltenMindSteelBlock, "mindsteel.block");
 		Entry<Block, Fluid> mindsteelEntry;
 		mindsteelEntry = TiCUtils.registerMaterial(150, "MindSteel", moltenMindSteelFluid, moltenMindSteel, moltenMindSteelBlock, 550, true);
@@ -63,7 +63,7 @@ public class MindStuff {
 		moltenMindSteelFluid = mindsteelEntry.getValue();
 		TiCUtils.registerPartMaterial(150, "MindSteel", 5, 2500, 2000, 10, 2.4F, 3, 0F, EnumChatFormatting.LIGHT_PURPLE.toString(), 0xff99ff, 50, 5.5F, 0F, 1F);
 	
-		moltenEnderIronBlock = new BlockMetalCustom().setHardness(2.0F).setBlockName("enderiron.block").setBlockTextureName("mcrossover:mindstuff/enderiron_block");
+		moltenEnderIronBlock = new BlockMetalCustom().setHardness(2.0F).setBlockName("enderiron.block").setBlockTextureName("mcrossover:mindstuff/block_enderiron");
 		GameRegistry.registerBlock(moltenEnderIronBlock, "enderiron.block");
 		Entry<Block, Fluid> enderEntry;
 		enderEntry = TiCUtils.registerMaterial(151, "EnderIron", moltenEnderIronFluid, moltenEnderIron, moltenEnderIronBlock, 550, true);
@@ -71,15 +71,15 @@ public class MindStuff {
 		moltenEnderIronFluid = enderEntry.getValue();
 		TiCUtils.registerPartMaterial(151, "EnderIron", 4, 1000, 10000, 20, 1.0F, 1, 0F, EnumChatFormatting.GREEN.toString(), 0x13523b, 3, 5.5F, 0F, 1F);		
 
-		moltenStartMetalBlock = new BlockMetalCustom().setHardness(2.0F).setBlockName("startmetal.block").setBlockTextureName("mcrossover:mindstuff/startmetal_block");
+		moltenStartMetalBlock = new BlockMetalCustom().setHardness(2.0F).setBlockName("startmetal.block").setBlockTextureName("mcrossover:mindstuff/block_startmetal");
 		GameRegistry.registerBlock(moltenStartMetalBlock, "startmetal.block");
 		Entry<Block, Fluid> startEntry;
 		startEntry = TiCUtils.registerMaterial(152, "StartMetal", moltenStartMetalFluid, moltenStartMetal, moltenStartMetalBlock, 550, true);
 		moltenStartMetal = startEntry.getKey();
 		moltenStartMetalFluid = startEntry.getValue();
-		TiCUtils.registerPartMaterial(152, "StartMetal", 4, 2000, 10000, 20, 1.0F, 1, 0F, EnumChatFormatting.WHITE.toString(), 0xffffff, 3, 5.5F, 0F, 1F);	
+		TiCUtils.registerPartMaterial(152, "StartMetal", 4, 2000, 10000, 20, 1.0F, 1, 0F, EnumChatFormatting.WHITE.toString(), 0xffeeff, 3, 5.5F, 0F, 1F);	
 
-		moltenStartBlock = new BlockMetalCustom().setHardness(2.0F).setBlockName("start.block").setBlockTextureName("mcrossover:mindstuff/start_block");
+		moltenStartBlock = new BlockMetalCustom().setHardness(2.0F).setBlockName("start.block").setBlockTextureName("mcrossover:mindstuff/block_start");
 		GameRegistry.registerBlock(moltenStartBlock, "start.block");
 		Entry<Block, Fluid> startCEntry;
 		startCEntry = TiCUtils.registerMaterial(153, "Start", moltenStartFluid, moltenStart, moltenStartBlock, 550, false);
@@ -88,7 +88,7 @@ public class MindStuff {
 		
 		tabMaterials = new CreativeTabs("mcrossover.materials") {public Item getTabIconItem() {return startCrystal;}};
 
-		startCrystal = new ItemCustom().setTextureName("mcrossover:mindstuff/crystal_start").setUnlocalizedName("crystal.start").setCreativeTab(tabMaterials);
+		startCrystal = new ItemCustom().setTextureName("mcrossover:mindstuff/gem_start").setUnlocalizedName("crystal.start").setCreativeTab(tabMaterials);
 		ingotStartMetal = new ItemCustom().setTextureName("mcrossover:mindstuff/ingot_startmetal").setUnlocalizedName("ingot.start").setCreativeTab(tabMaterials);
 		ingotEnderIron = new ItemCustom().setTextureName("mcrossover:mindstuff/ingot_enderiron").setUnlocalizedName("ingot.ender").setCreativeTab(tabMaterials);
 		ingotMindSteel = new ItemCustom().setTextureName("mcrossover:mindstuff/ingot_mindsteel").setUnlocalizedName("ingot.mindsteel").setCreativeTab(tabMaterials);
