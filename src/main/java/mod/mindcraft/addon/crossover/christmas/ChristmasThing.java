@@ -4,6 +4,7 @@ import java.util.Map.Entry;
 
 import mantle.pulsar.pulse.Handler;
 import mantle.pulsar.pulse.Pulse;
+import mod.mindcraft.addon.crossover.CrossoverMain;
 import mod.mindcraft.addon.crossover.christmas.utils.BlockCustomOre;
 import mod.mindcraft.addon.crossover.christmas.utils.ItemCustom;
 import mod.mindcraft.addon.crossover.christmas.world.ChristmasWorldGenerator;
@@ -12,10 +13,19 @@ import mod.mindcraft.addon.crossover.tconstruct.utils.TiCUtils;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.gen.structure.StructureMineshaftPieces.Cross;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import tconstruct.TConstruct;
+import tconstruct.library.TConstructRegistry;
+import tconstruct.library.crafting.FluidType;
+import tconstruct.library.crafting.LiquidCasting;
+import tconstruct.library.crafting.PatternBuilder;
+import tconstruct.library.crafting.Smeltery;
 import tconstruct.library.crafting.ToolBuilder;
 import tconstruct.library.tools.DualMaterialToolPart;
 import tconstruct.library.weaponry.AmmoItem;
+import tconstruct.tools.TinkerTools;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -169,7 +179,7 @@ public class ChristmasThing {
 		
 	}
 	
-	public void registerAll (String [][] names) {
+	private void registerAll (String [][] names) {
 		for (int i = 0; i < ores.length ;i++) {
 			System.out.println("Pass Number : " + i);
 			ores[i].setHarvestLevel("pickaxe", 2);
@@ -186,7 +196,10 @@ public class ChristmasThing {
 			TiCUtils.addBasicMelting(new ItemStack(ingots[i]), true, ores[i], new ItemStack(blocks[i]), fluids[i]);
 			TiCUtils.addBasicMelting(new ItemStack(dusts[i]), true, ores[i], new ItemStack(blocks[i]), fluids[i]);
 			TiCUtils.addCasting(fluids[i], 125+i);
+			Smeltery.addMelting(FluidType.getFluidType(fluids[i]), new ItemStack(dusts[i]), 0, TConstruct.ingotLiquidValue);
+			CrossoverMain.addOreProcess(ingots[i], blocks[i], ores[i]);
+			TiCUtils.registerUnknownThing(new ItemStack(ingots[i]), new ItemStack(blocks[i]), names[4][i]);
 		}
 	}
-
+	
 }

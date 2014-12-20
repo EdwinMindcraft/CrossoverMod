@@ -18,6 +18,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 @Mod(modid="mcrossover", name="Crossover Mod", version="WIP -- 0.0.1", dependencies="required-after:TConstruct;after:Metallurgy;after:Mekanism")
 public class CrossoverMain {
@@ -49,5 +50,20 @@ public class CrossoverMain {
 	@EventHandler
 	public void postInit (FMLPostInitializationEvent e) {
 		pulsar.postInit(e);
+	}
+	
+	public static void addOreProcess(Item ingot, Block block, Block ore) {
+		addBlockRecipe(ingot, block);
+		GameRegistry.addSmelting(new ItemStack(ore), new ItemStack(ingot), 0.2F);
+	}
+	
+	public static void addBlockRecipe (Item ingot, Block block) {
+		GameRegistry.addShapelessRecipe(new ItemStack(ingot, 9), block);
+		GameRegistry.addRecipe(new ItemStack(block), new Object[]{
+			"###",
+			"###",
+			"###",
+			Character.valueOf('#'), ingot
+		});		
 	}
 }

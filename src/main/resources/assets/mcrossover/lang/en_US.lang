@@ -45,36 +45,36 @@ material.mindsteel=Mind Steel
 material.startmetal=Start Metal
 material.start=Start
 
-tile.fluid.molten.yellowdecorative=Molten Yellow Decorative
-tile.fluid.molten.reddecorative=Molten Red Decorative
-tile.fluid.molten.bluedecorative=Molten Blue Decorative
-tile.fluid.molten.greendecorative=Molten Green Decorative
-tile.fluid.molten.whitedecorative=Molten White Decorative
-tile.fluid.molten.blackdecorative=Molten Black Decorative
+tile.fluid.molten.yellowdecorative.name=Molten Yellow Decorative
+tile.fluid.molten.reddecorative.name=Molten Red Decorative
+tile.fluid.molten.bluedecorative.name=Molten Blue Decorative
+tile.fluid.molten.greendecorative.name=Molten Green Decorative
+tile.fluid.molten.whitedecorative.name=Molten White Decorative
+tile.fluid.molten.blackdecorative.name=Molten Black Decorative
 
-tile.fluid.molten.enderiron=Molten Ender Iron
-tile.fluid.molten.mindsteel=Molten Mind Steel
-tile.fluid.molten.startmetal=Molten Start Metal
-tile.fluid.molten.start=Molten Start
+tile.fluid.molten.enderiron.name=Molten Ender Iron
+tile.fluid.molten.mindsteel.name=Molten Mind Steel
+tile.fluid.molten.startmetal.name=Molten Start Metal
+tile.fluid.molten.start.name=Molten Start
 
-tile.ore.yellow=Yellow Decorative Ore
-tile.ore.red=Red Decorative Ore
-tile.ore.blue=Blue Decorative Ore
-tile.ore.green=Green Decorative Ore
-tile.ore.white=White Decorative Ore
-tile.ore.black=Black Decorative Ore
+tile.ore.yellow.name=Yellow Decorative Ore
+tile.ore.red.name=Red Decorative Ore
+tile.ore.blue.name=Blue Decorative Ore
+tile.ore.green.name=Green Decorative Ore
+tile.ore.white.name=White Decorative Ore
+tile.ore.black.name=Black Decorative Ore
 
-tile.block.yellow=Yellow Decorative Block
-tile.block.red=Red Decorative Block
-tile.block.blue=Blue Decorative Block
-tile.block.green=Green Decorative Block
-tile.block.white=White Decorative Block
-tile.block.black=Black Decorative Block
+tile.block.yellow.name=Yellow Decorative Block
+tile.block.red.name=Red Decorative Block
+tile.block.blue.name=Blue Decorative Block
+tile.block.green.name=Green Decorative Block
+tile.block.white.name=White Decorative Block
+tile.block.black.name=Black Decorative Block
 
-tile.enderiron.block=Ender Iron Block
-tile.mindsteel.block=Mind Steel Block
-tile.startmetal.block=Start Metal Block
-tile.start.block=Start Block
+tile.enderiron.block.name=Ender Iron Block
+tile.mindsteel.block.name=Mind Steel Block
+tile.startmetal.block.name=Start Metal Block
+tile.start.block.name=Start Block
 
 fluid.molten.yellowdecorative=Molten Yellow Decorative
 fluid.molten.reddecorative=Molten Red Decorative
@@ -92,7 +92,6 @@ item.crystal.start.name=Start Crystal
 item.ingot.ender.name=Ender Iron Ingot
 item.ingot.mindsteel.name=Mind Steel Ingot
 item.ingot.start.name=Start Metal Ingot
-item.crystal.start.name=Start Crystal
 
 item.ingot.yellow.name=Yellow Ingot
 item.ingot.red.name=Red Ingot

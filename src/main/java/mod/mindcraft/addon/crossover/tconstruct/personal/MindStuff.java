@@ -82,21 +82,21 @@ public class MindStuff {
 		moltenStartBlock = new BlockMetalCustom().setHardness(2.0F).setBlockName("start.block").setBlockTextureName("mcrossover:mindstuff/start_block");
 		GameRegistry.registerBlock(moltenStartBlock, "start.block");
 		Entry<Block, Fluid> startCEntry;
-		startCEntry = TiCUtils.registerMaterial(153, "Start", moltenStartFluid, moltenStart, moltenStartBlock, 550, true);
+		startCEntry = TiCUtils.registerMaterial(153, "Start", moltenStartFluid, moltenStart, moltenStartBlock, 550, false);
 		moltenStart = startCEntry.getKey();
 		moltenStartFluid = startCEntry.getValue();
 		
 		tabMaterials = new CreativeTabs("mcrossover.materials") {public Item getTabIconItem() {return startCrystal;}};
 
-		startCrystal = new ItemCustom().setTextureName("mcrossover:mindstuff/crystal_start").setUnlocalizedName("start.crystal").setCreativeTab(tabMaterials);
-		ingotStartMetal = new ItemCustom().setTextureName("mcrossover:mindstuff/ingot_startmetal").setUnlocalizedName("start.ingot").setCreativeTab(tabMaterials);
-		ingotEnderIron = new ItemCustom().setTextureName("mcrossover:mindstuff/ingot_enderiron").setUnlocalizedName("ender.ingot").setCreativeTab(tabMaterials);
-		ingotMindSteel = new ItemCustom().setTextureName("mcrossover:mindstuff/ingot_mindsteel").setUnlocalizedName("mindsteel.ingot").setCreativeTab(tabMaterials);
+		startCrystal = new ItemCustom().setTextureName("mcrossover:mindstuff/crystal_start").setUnlocalizedName("crystal.start").setCreativeTab(tabMaterials);
+		ingotStartMetal = new ItemCustom().setTextureName("mcrossover:mindstuff/ingot_startmetal").setUnlocalizedName("ingot.start").setCreativeTab(tabMaterials);
+		ingotEnderIron = new ItemCustom().setTextureName("mcrossover:mindstuff/ingot_enderiron").setUnlocalizedName("ingot.ender").setCreativeTab(tabMaterials);
+		ingotMindSteel = new ItemCustom().setTextureName("mcrossover:mindstuff/ingot_mindsteel").setUnlocalizedName("ingot.mindsteel").setCreativeTab(tabMaterials);
 		
-		GameRegistry.registerItem(startCrystal, "start.crystal");
-		GameRegistry.registerItem(ingotStartMetal, "start.ingot");
-		GameRegistry.registerItem(ingotEnderIron, "ender.ingot");
-		GameRegistry.registerItem(ingotMindSteel, "mindsteel.ingot");
+		GameRegistry.registerItem(startCrystal, "crystal.start");
+		GameRegistry.registerItem(ingotStartMetal, "ingot.start");
+		GameRegistry.registerItem(ingotEnderIron, "ingot.ender");
+		GameRegistry.registerItem(ingotMindSteel, "ingot.mindsteel");
 	}
 	
 	@Handler
@@ -115,6 +115,10 @@ public class MindStuff {
 		TiCUtils.addCasting(moltenEnderIronFluid, 152);
 		
 		TiCUtils.addBasicMelting(new ItemStack(startCrystal), false, null, new ItemStack(moltenStartBlock), moltenStartFluid);
+		
+		TiCUtils.registerUnknownThing(new ItemStack(ingotEnderIron), new ItemStack(moltenEnderIronBlock), "EnderIron");
+		TiCUtils.registerUnknownThing(new ItemStack(ingotStartMetal), new ItemStack(moltenStartMetalBlock), "StartMetal");
+		TiCUtils.registerUnknownThing(new ItemStack(ingotMindSteel), new ItemStack(moltenMindSteelBlock), "MindSteel");
 	}
 	
 	@Handler

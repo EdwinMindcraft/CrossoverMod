@@ -13,11 +13,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 import tconstruct.TConstruct;
 import tconstruct.library.TConstructRegistry;
+import tconstruct.library.client.TConstructClientRegistry;
 import tconstruct.library.crafting.CastingRecipe;
 import tconstruct.library.crafting.FluidType;
 import tconstruct.library.crafting.LiquidCasting;
+import tconstruct.library.crafting.PatternBuilder;
 import tconstruct.library.crafting.Smeltery;
 import tconstruct.library.tools.DualMaterialToolPart;
 import tconstruct.library.util.IPattern;
@@ -97,6 +100,8 @@ public class TiCUtils {
 		TConstructRegistry.addDefaultShardMaterial(materialId);
         TConstructRegistry.addBowMaterial(materialId, drawSpeed, speedMax);
         TConstructRegistry.addArrowMaterial(materialId, mass,  fragility);
+        PatternBuilder pb = PatternBuilder.instance;
+		pb.registerMaterialSet(name, new ItemStack(TinkerTools.toolShard, 1, materialId), new ItemStack(TinkerTools.toolRod, 1, materialId), materialId);
 	}
 	
 	public static void addBasicMelting(ItemStack ingot, boolean isOre, Block oreBlock, ItemStack metalBlock, Fluid fluid) {
@@ -107,13 +112,16 @@ public class TiCUtils {
 		
         basinCasting.addCastingRecipe(metalBlock, new FluidStack(fluid, TConstruct.blockLiquidValue), null, true, 100);
         tableCasting.addCastingRecipe(ingot, new FluidStack(fluid, TConstruct.ingotLiquidValue), ingotcast, false, 50);
-		
 		Smeltery.addMelting(FluidType.getFluidType(fluid), ingot, 0, TConstruct.ingotLiquidValue);
 		if (isOre) {
 			Smeltery.addMelting(FluidType.getFluidType(fluid), new ItemStack(oreBlock), 0, TConstruct.ingotLiquidValue*2);
 		}
 		Smeltery.addMelting(FluidType.getFluidType(fluid),ingot, 0, TConstruct.blockLiquidValue);
-		
+	}
+	
+	public static void registerUnknownThing (ItemStack ingot, ItemStack block, String materialName) {
+		PatternBuilder.instance.registerMaterial(ingot, 2, materialName);		
+		PatternBuilder.instance.registerMaterial(block, 18, materialName);		
 	}
 	
 	public static void addCasting(Fluid fluid, int fluidId) {
