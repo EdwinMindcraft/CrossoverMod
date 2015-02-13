@@ -4,19 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import mod.mindcraft.addon.crossover.christmas.ChristmasThing;
 import mod.mindcraft.addon.crossover.fluids.CrossoverFluidBlock;
 import mod.mindcraft.addon.crossover.tconstruct.metallurgy.enums.EnumMetallurgyMaterials;
+import mod.mindcraft.addon.crossover.tconstruct.metallurgy.enums.EnumMetallurgyMaterialsITT;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
 import tconstruct.TConstruct;
 import tconstruct.library.TConstructRegistry;
-import tconstruct.library.client.TConstructClientRegistry;
 import tconstruct.library.crafting.CastingRecipe;
 import tconstruct.library.crafting.FluidType;
 import tconstruct.library.crafting.LiquidCasting;
@@ -93,6 +91,10 @@ public class TiCUtils {
 		registerPartMaterial(materialId, name, mat.getMiningLevel(), mat.getDurability(), mat.getMiningSpeed(), mat.getDamage(), mat.getHandleModifier(), mat.getReinforced(), mat.getStonebound(), mat.getChatColor(), mat.getColor(), mat.getDrawSpeed(), mat.getSpeedMax(), mat.getMass(), mat.getFragility());
 	}
 	
+	public static void registerPartMaterial(int materialId, String name, EnumMetallurgyMaterialsITT mat) {
+		registerPartMaterial(materialId, name, mat.getMiningLevel(), mat.getDurability(), mat.getMiningSpeed(), mat.getDamage(), mat.getHandleModifier(), mat.getReinforced(), mat.getStonebound(), mat.getChatColor(), mat.getColor(), mat.getDrawSpeed(), mat.getSpeedMax(), mat.getMass(), mat.getFragility());
+	}
+	
 	public static void registerPartMaterial(int materialId, String name, int harvesetLevel, int durability, int miningSpeed, int attack, float handleModifier, int reinforced, float stonebound, String style, int primaryColor, int drawSpeed, float speedMax, float mass, float fragility) {
 		//Part registry
 		TConstructRegistry.addToolMaterial(materialId, name, harvesetLevel, durability, miningSpeed, attack, handleModifier, reinforced, stonebound, style, primaryColor);
@@ -104,7 +106,7 @@ public class TiCUtils {
 		pb.registerMaterialSet(name, new ItemStack(TinkerTools.toolShard, 1, materialId), new ItemStack(TinkerTools.toolRod, 1, materialId), materialId);
 	}
 	
-	public static void addBasicMelting(ItemStack ingot, boolean isOre, Block oreBlock, ItemStack metalBlock, Fluid fluid) {
+	public static void addBasicMelting(ItemStack ingot, boolean isOre, ItemStack oreBlock, ItemStack metalBlock, Fluid fluid) {
 		LiquidCasting basinCasting = TConstructRegistry.getBasinCasting();
         LiquidCasting tableCasting = TConstructRegistry.instance.getTableCasting();
 		
@@ -114,9 +116,10 @@ public class TiCUtils {
         tableCasting.addCastingRecipe(ingot, new FluidStack(fluid, TConstruct.ingotLiquidValue), ingotcast, false, 50);
 		Smeltery.addMelting(FluidType.getFluidType(fluid), ingot, 0, TConstruct.ingotLiquidValue);
 		if (isOre) {
-			Smeltery.addMelting(FluidType.getFluidType(fluid), new ItemStack(oreBlock), 0, TConstruct.ingotLiquidValue*2);
+			Smeltery.addMelting(FluidType.getFluidType(fluid), oreBlock, 0, TConstruct.ingotLiquidValue*2);
 		}
-		Smeltery.addMelting(FluidType.getFluidType(fluid),ingot, 0, TConstruct.blockLiquidValue);
+		Smeltery.addMelting(FluidType.getFluidType(fluid),ingot, 0, TConstruct.ingotLiquidValue);
+		Smeltery.addMelting(FluidType.getFluidType(fluid),metalBlock, 0, TConstruct.blockLiquidValue);
 	}
 	
 	public static void registerUnknownThing (ItemStack ingot, ItemStack block, String materialName) {
@@ -183,28 +186,4 @@ public class TiCUtils {
             }
         }
     }
-    
-    public static void registerChristmasBallCasting()
-    {
-        LiquidCasting tb = TConstructRegistry.getTableCasting();
-
-        for(Map.Entry<String, FluidType> entry : FluidType.fluidTypes.entrySet()) {
-            if(!entry.getValue().isToolpart)
-                continue;
-            FluidStack liquid = new FluidStack(entry.getValue().fluid, TConstruct.ingotLiquidValue);
-            CastingRecipe recipe = tb.getCastingRecipe(liquid, new ItemStack(TinkerSmeltery.metalPattern, 1, 2)); //pickaxe
-            if(recipe == null)
-                continue;
-
-            int matID = recipe.getResult().getItemDamage();
-
-            for(Integer id : TConstructRegistry.toolMaterials.keySet()) {
-                ItemStack rod = new ItemStack(TinkerTools.frypanHead, 1, id);
-                if(((IToolPart)TinkerTools.frypanHead).getMaterialID(rod) == -1)
-                    continue;
-
-                tb.addCastingRecipe(DualMaterialToolPart.createDualMaterial(ChristmasThing.partBall, id, matID), liquid, rod, true, 150);
-            }
-        }
     }
-}

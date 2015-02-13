@@ -193,8 +193,8 @@ public class ChristmasThing {
 			fluids[i] = entry.getValue();
 			fluidsBlocks[i] = entry.getKey();
 			TiCUtils.registerPartMaterial(125+i, names[4][i], 2, 400, 700, 3, 1F, 0, 0.0F, chatColors [i], primaryColors [i], 20, 2.0F, 0.1F, 100F);
-			TiCUtils.addBasicMelting(new ItemStack(ingots[i]), true, ores[i], new ItemStack(blocks[i]), fluids[i]);
-			TiCUtils.addBasicMelting(new ItemStack(dusts[i]), true, ores[i], new ItemStack(blocks[i]), fluids[i]);
+			TiCUtils.addBasicMelting(new ItemStack(ingots[i]), true, new ItemStack(ores[i]), new ItemStack(blocks[i]), fluids[i]);
+			TiCUtils.addBasicMelting(new ItemStack(dusts[i]), true, new ItemStack(ores[i]), new ItemStack(blocks[i]), fluids[i]);
 			TiCUtils.addCasting(fluids[i], 125+i);
 			Smeltery.addMelting(FluidType.getFluidType(fluids[i]), new ItemStack(dusts[i]), 0, TConstruct.ingotLiquidValue);
 			CrossoverMain.addOreProcess(ingots[i], blocks[i], ores[i]);

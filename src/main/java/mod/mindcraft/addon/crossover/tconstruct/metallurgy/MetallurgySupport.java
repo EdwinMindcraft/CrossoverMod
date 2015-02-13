@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import mantle.pulsar.pulse.Handler;
 import mantle.pulsar.pulse.Pulse;
 import mod.mindcraft.addon.crossover.tconstruct.metallurgy.enums.EnumMetallurgyMaterials;
+import mod.mindcraft.addon.crossover.tconstruct.metallurgy.enums.EnumMetallurgyMaterialsITT;
 import mod.mindcraft.addon.crossover.tconstruct.utils.TiCUtils;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -18,9 +19,12 @@ import tconstruct.library.crafting.Smeltery;
 
 import com.teammetallurgy.metallurgy.BlockList;
 
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.handshake.FMLHandshakeMessage.ModList;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @GameRegistry.ObjectHolder("mcrossover")
@@ -88,9 +92,6 @@ public class MetallurgySupport {
 	public static Boolean[] isToolPart = new Boolean[39];
 
 	public static ItemStack[] Ingots = new ItemStack[39];
-	
-
-
 	
 
 	@Handler
@@ -321,51 +322,25 @@ public class MetallurgySupport {
 	}
 
 	private void initMetals() {
+		Object[] matList;
+		if (Loader.isModLoaded("IguanaTweaksTConstruct")) {
+			matList = EnumMetallurgyMaterialsITT.values();
+		}
+		else {
+			matList = EnumMetallurgyMaterials.values();
+		}
 		
-		EnumMetallurgyMaterials[] matList = {
-				EnumMetallurgyMaterials.MATERIAL_MANGANESE,
-				EnumMetallurgyMaterials.MATERIAL_HEPATIZON,
-				EnumMetallurgyMaterials.MATERIAL_DAMASCUSSTEEL,
-				EnumMetallurgyMaterials.MATERIAL_ANGMALLEN,
-				EnumMetallurgyMaterials.MATERIAL_EXIMITE,
-				EnumMetallurgyMaterials.MATERIAL_MEUTOITE,
-				EnumMetallurgyMaterials.MATERIAL_DESICHALKOS,
-				EnumMetallurgyMaterials.MATERIAL_PROMETHEUM,
-				EnumMetallurgyMaterials.MATERIAL_DEEPIRON,
-				EnumMetallurgyMaterials.MATERIAL_INFUSCOLIUM,
-				EnumMetallurgyMaterials.MATERIAL_BLACKSTEEL,
-				EnumMetallurgyMaterials.MATERIAL_OURECLASE,
-				EnumMetallurgyMaterials.MATERIAL_ASTRALSILVER,
-				EnumMetallurgyMaterials.MATERIAL_CARMOT,
-				EnumMetallurgyMaterials.MATERIAL_MITHRIL,
-				EnumMetallurgyMaterials.MATERIAL_RUBRACIUM,
-				EnumMetallurgyMaterials.MATERIAL_QUICKSILVER,
-				EnumMetallurgyMaterials.MATERIAL_HADEROTH,
-				EnumMetallurgyMaterials.MATERIAL_ORICHALCUM,
-				EnumMetallurgyMaterials.MATERIAL_CELENEGIL,
-				EnumMetallurgyMaterials.MATERIAL_ADAMANTINE,
-				EnumMetallurgyMaterials.MATERIAL_ALTARUS,
-				EnumMetallurgyMaterials.MATERIAL_TARTARITE,
-				EnumMetallurgyMaterials.MATERIAL_IGNATUS,
-				EnumMetallurgyMaterials.MATERIAL_SHADOWIRON,
-				EnumMetallurgyMaterials.MATERIAL_LEMURITE,
-				EnumMetallurgyMaterials.MATERIAL_MIDASIUM,
-				EnumMetallurgyMaterials.MATERIAL_VYROXERES,
-				EnumMetallurgyMaterials.MATERIAL_CERUCLASE,
-				EnumMetallurgyMaterials.MATERIAL_ALDUORITE,
-				EnumMetallurgyMaterials.MATERIAL_KALENDRITE,
-				EnumMetallurgyMaterials.MATERIAL_VULCANITE,
-				EnumMetallurgyMaterials.MATERIAL_SANGUINITE,
-				EnumMetallurgyMaterials.MATERIAL_SHADOWSTEEL,
-				EnumMetallurgyMaterials.MATERIAL_INOLASHITE,
-				EnumMetallurgyMaterials.MATERIAL_AMORDRINE,
-				EnumMetallurgyMaterials.MATERIAL_ZINC,
-				EnumMetallurgyMaterials.MATERIAL_BRASS, EnumMetallurgyMaterials.MATERIAL_PLATINIUM };
+		matList = EnumMetallurgyMaterials.values();
 		for (int i = 0; i < Fluids.length; i++) {
 			if (Fluids[i] != null) {
 				FluidType.registerFluidType(Names[i], blocksBlase[i], blocks[i].getItemDamage(), 550, Fluids[i], isToolPart[i]);
 				if (isToolPart[i]) {
-					TiCUtils.registerPartMaterial(i+50, Names[i], matList[i]);
+					if (Loader.isModLoaded("IguanaTweaksTConstruct")) {
+						TiCUtils.registerPartMaterial(i+50, Names[i], (EnumMetallurgyMaterialsITT)matList[i]);
+					}
+					else {
+						TiCUtils.registerPartMaterial(i+50, Names[i], (EnumMetallurgyMaterials)matList[i]);
+					}
 				}
 			}
 			else {

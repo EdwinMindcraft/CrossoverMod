@@ -107,7 +107,7 @@ public class MindStuff {
 		TiCUtils.addBasicMelting(new ItemStack(ingotMindSteel), false, null, new ItemStack(moltenMindSteelBlock), moltenMindSteelFluid);
 		TiCUtils.addCasting(moltenMindSteelFluid, 150);
 		
-        Smeltery.addAlloyMixing(new FluidStack(moltenEnderIronFluid, (int) (TConstruct.nuggetLiquidValue * 2)), new FluidStack(TinkerSmeltery.moltenIronFluid, TConstruct.nuggetLiquidValue),new FluidStack(TinkerSmeltery.moltenEnderFluid, TConstruct.nuggetLiquidValue));
+        Smeltery.addAlloyMixing(new FluidStack(moltenEnderIronFluid, (int) (TConstruct.nuggetLiquidValue * 2)), new FluidStack(moltenStartFluid, TConstruct.nuggetLiquidValue),new FluidStack(TinkerSmeltery.moltenEnderFluid, TConstruct.nuggetLiquidValue));
 		TiCUtils.addBasicMelting(new ItemStack(ingotEnderIron), false, null, new ItemStack(moltenEnderIronBlock), moltenEnderIronFluid);
 		TiCUtils.addCasting(moltenEnderIronFluid, 151);
 

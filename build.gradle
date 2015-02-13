@@ -29,10 +29,10 @@ repositories {
         name 'CB Maven FS'
         url "http://chickenbones.net/maven/"
     }
-    /*maven {
+    maven {
          name "ProfMobius Maven FS"
          url "http://mobiusstrip.eu/maven"
-    }*/
+    }
     maven {
         name 'DVS1 Maven FS'
         url 'http://dvs1.progwml6.com/files/maven'
@@ -45,10 +45,22 @@ repositories {
 		name 'Metallurgy'
 		url 'http://mc.aesireanempire.com/maven'
 	}
+	maven {
+		url 'http://dl.tsr.me/artifactory/libs-release-local'
+		name 'AppEng'
+	}
+	maven {
+		url 'http://maven.tterrag.com'
+		name 'Ender IO'
+	}
+	maven {
+	    url 'https://librairies.minecraft.net'
+	}
 }
 
+
 // Load ForgeGradle
-apply plugin: 'forge'
+ apply plugin: 'forge'
 group = 'mod.mindcraft.crossover'
 
 // Define properties file
@@ -70,11 +82,15 @@ dependencies {
     compile "codechicken:CodeChickenLib:${config.minecraft_version}-${config.CCLIB_version}:dev"
     compile "codechicken:CodeChickenCore:${config.minecraft_version}-${config.ccc_version}:dev"
     compile "codechicken:NotEnoughItems:${config.minecraft_version}-${config.NEI_version}:dev"
+    compile "codechicken:ForgeMultipart:${config.minecraft_version}-${config.FMP_version}:dev"
     compile "com.teammetallurgy:MetallurgyCore:${config.minecraft_version}-${config.metallurgycore_version}:deobf"
     compile "com.teammetallurgy:Metallurgy:${config.minecraft_version}-${config.metallurgy_version}:deobf"
 	compile "tconstruct:TConstruct:${config.minecraft_version}-${config.tconstruct_version}:deobf"
     //compile "mcp.mobius.waila:Waila:${config.waila_version}:dev"
-    deployerJars 'org.apache.maven.wagon:wagon-ssh:2.2'
+	//compile "tterrag.core:ttCore:MC${config.minecraft_version}-${config.ttCore_version}:deobf"
+	//compile "com.enderio:EnderIO:${config.minecraft_version}-${config.enderio_version}:dev"
+    //compile "net.sengir.forestry:${config.forestry_version}:api"
+  deployerJars 'org.apache.maven.wagon:wagon-ssh:2.2'
 }
 
 // Finds and sets version data
