@@ -26,7 +26,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid="mcrossover", name="Crossover Mod", version="WIP -- 0.0.1", dependencies="required-after:TConstruct;after:Metallurgy;after:Mekanism;after:EnderIO;after:IguanaTweaksTConstruct")
+@Mod(modid="mcrossover", name="Crossover Mod", version="WIP -- 0.0.1", dependencies="required-after:TConstruct;after:Metallurgy;after:Mekanism;after:EnderIO")
 public class CrossoverMain {
 	
 	public static final String MODID = "mcrossover";

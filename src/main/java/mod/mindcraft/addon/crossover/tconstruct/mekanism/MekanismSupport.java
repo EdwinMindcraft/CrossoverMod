@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.gen.structure.StructureMineshaftPieces.Cross;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -34,10 +35,10 @@ public class MekanismSupport {
 
 	@Handler
 	public static void preInit (FMLPreInitializationEvent e) {
-		ingotRefinedObsidian = OreDictionary.getOres("ingotRefinedObsidian").get(0);
-		ingotOsmium = OreDictionary.getOres("ingotOsmium").get(0);
-		ingotRefinedGlowstone = OreDictionary.getOres("ingotRefinedGlowstone").get(0);
-		Block metalBlock = Block.getBlockFromItem(OreDictionary.getOres("blockRefinedObsidian").get(0).getItem());
+		ingotRefinedObsidian = CrossoverMain.getItemStackFromOreDictinaryName("ingotRefinedObsidian");
+		ingotOsmium = CrossoverMain.getItemStackFromOreDictinaryName("ingotOsmium");
+		ingotRefinedGlowstone = CrossoverMain.getItemStackFromOreDictinaryName("ingotRefinedGlowstone");
+		Block metalBlock = CrossoverMain.getBlockFromOreDictinaryName("blockRefinedObsidian");
 		
 		Entry<Block, Fluid> refinedObsidianEntry;
 		Entry<Block, Fluid> osmiumEntry;

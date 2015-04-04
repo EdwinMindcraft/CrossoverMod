@@ -330,7 +330,6 @@ public class MetallurgySupport {
 			matList = EnumMetallurgyMaterials.values();
 		}
 		
-		matList = EnumMetallurgyMaterials.values();
 		for (int i = 0; i < Fluids.length; i++) {
 			if (Fluids[i] != null) {
 				FluidType.registerFluidType(Names[i], blocksBlase[i], blocks[i].getItemDamage(), 550, Fluids[i], isToolPart[i]);
