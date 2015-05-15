@@ -56,6 +56,30 @@ repositories {
 	maven {
 	    url 'https://librairies.minecraft.net'
 	}
+	ivy {
+        name "CoFHLib"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2229/525/[module]-[revision].[ext]"
+    }
+    ivy {
+        name "CoFHCore"
+        artifactPattern 'http://addons-origin.cursecdn.com/files/2229/536/[module]-[revision].[ext]'
+    }
+    ivy {
+        name "RedstoneArsenal"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2229/530/[module]-[revision].[ext]"
+    }
+    ivy {
+        name "ThermalExpansion"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2229/552/[module]-[revision].[ext]"
+    }
+    ivy {
+        name "ThermalFoundation"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2229/339/[module]-[revision].[ext]"
+    }
+    ivy {
+        name "ThermalDynamics"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2229/532/[module]-[revision].[ext]"
+    }
 }
 
 
@@ -90,6 +114,13 @@ dependencies {
 	//compile "tterrag.core:ttCore:MC${config.minecraft_version}-${config.ttCore_version}:deobf"
 	//compile "com.enderio:EnderIO:${config.minecraft_version}-${config.enderio_version}:dev"
     //compile "net.sengir.forestry:${config.forestry_version}:api"
+	compile group: 'cofh', name: 'CoFHLib', version: '[1.7.10]1.0.0RC5-123-dev', ext: 'jar'
+    compile group: 'cofh', name: 'CoFHCore', version: '[1.7.10]3.0.0RC5-207-dev', ext: 'jar'
+    compile group: 'cofh', name: 'RedstoneArsenal', version: '[1.7.10]1.1.0RC4-54-dev', ext: 'jar'
+    compile group: 'cofh', name: 'ThermalExpansion', version: '[1.7.10]4.0.0RC6-138-dev', ext: 'jar'
+    compile group: 'cofh', name: 'ThermalFoundation', version: '[1.7.10]1.0.0RC4-58-dev', ext: 'jar'
+    compile group: 'cofh', name: 'ThermalDynamics', version: '[1.7.10]1.0.0RC5-94-dev', ext: 'jar'
+
   deployerJars 'org.apache.maven.wagon:wagon-ssh:2.2'
 }
 
@@ -121,7 +152,7 @@ if (System.getenv().ARTIFACT_VERSION != null) {
 version = "${config.minecraft_version}-${artifact_version}"
 
 minecraft {
-    version = config.minecraft_version + "-" + config.forge_version
+    version = "1.7.10-10.13.3.1403-1.7.10"
     runDir = 'run'
     replace '${version}', project.version
 }

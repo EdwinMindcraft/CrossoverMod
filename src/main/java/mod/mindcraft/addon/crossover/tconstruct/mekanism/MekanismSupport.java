@@ -44,8 +44,6 @@ public class MekanismSupport {
 		Entry<Block, Fluid> osmiumEntry;
 		Entry<Block, Fluid> refinedGlowstoneEntry;
 		
-		
-		
 		refinedObsidianEntry = TiCUtils.registerMaterial(43, "refined.obsidian", moltenRefinedObsidianFluid, moltenRefinedObsidian, metalBlock, 2, 1000, true);
 		osmiumEntry = TiCUtils.registerMaterial(44, "osmium", moltenOsmiumFluid, moltenOsmium, metalBlock, 0, 550, true);
 		refinedGlowstoneEntry = TiCUtils.registerMaterial(45, "refined.glowstone", moltenRefinedGlowstoneFluid, moltenRefinedGlowstone, metalBlock, 4, 200, true);

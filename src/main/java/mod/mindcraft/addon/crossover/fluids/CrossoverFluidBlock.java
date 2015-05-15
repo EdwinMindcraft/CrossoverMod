@@ -16,10 +16,6 @@ public class CrossoverFluidBlock extends BlockFluidClassic {
 	boolean alpha = false;
 	private boolean overwriteFluidIcons = true;
 	
-	public void defineTexture(String str) {
-		texture = str + texture;
-	}
-	
 	public CrossoverFluidBlock(Fluid fluid, String texture) {
 		super(fluid, Material.lava);
 		this.texture = texture;

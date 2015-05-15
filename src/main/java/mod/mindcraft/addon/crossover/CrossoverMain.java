@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import mantle.pulsar.config.ForgeCFG;
 import mantle.pulsar.control.PulseManager;
 import mod.mindcraft.addon.crossover.christmas.ChristmasThing;
+import mod.mindcraft.addon.crossover.specialfluids.SpecialFluids;
 import mod.mindcraft.addon.crossover.tconstruct.enderio.EnderIOSupport;
 import mod.mindcraft.addon.crossover.tconstruct.mekanism.MekanismSupport;
 import mod.mindcraft.addon.crossover.tconstruct.metallurgy.MetallurgySupport;
@@ -16,6 +17,7 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -42,6 +44,7 @@ public class CrossoverMain {
 		pulsar.registerPulse(new ChristmasThing());
 		pulsar.registerPulse(new EnderIOSupport());
 		pulsar.registerPulse(new MekanismSupport());
+		pulsar.registerPulse(new SpecialFluids());
 		pulsar.preInit(e);
         eventHandler = new CrossoverEventHandler();
         FMLCommonHandler.instance().bus().register(eventHandler);
@@ -72,9 +75,10 @@ public class CrossoverMain {
 	}
 	
 	
-	public static void addOreProcess(Item ingot, Block block, Block ore) {
+	public static void addOreProcess(Item ingot, Block block, Block ore, Item dust) {
 		addBlockRecipe(ingot, block);
 		GameRegistry.addSmelting(new ItemStack(ore), new ItemStack(ingot), 0.2F);
+		GameRegistry.addSmelting(new ItemStack(dust), new ItemStack(ingot), 0.2F);
 	}
 	
 	public static Block getBlockFromOreDictinaryName(String name) {

@@ -17,7 +17,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import sun.nio.cs.ext.MacCroatian;
 import tconstruct.TConstruct;
 import tconstruct.library.crafting.Smeltery;
 import tconstruct.smeltery.TinkerSmeltery;
@@ -27,7 +26,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @GameRegistry.ObjectHolder("mcrossover")
-@Pulse(id="Crossover Personnal Stuff")
+@Pulse(id="Crossover Mindcrafts Stuff")
 public class MindStuff {
 	
 	public static Fluid moltenMindSteelFluid;
@@ -50,7 +49,7 @@ public class MindStuff {
 	public static Item ingotStartMetal;
 	public static Item ingotEnderIron;
 	public static Item ingotMindSteel;
-	
+		
 	public static CreativeTabs tabMaterials;
 
 	@Handler

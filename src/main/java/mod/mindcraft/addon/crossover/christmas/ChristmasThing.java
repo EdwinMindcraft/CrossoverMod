@@ -1,31 +1,34 @@
 package mod.mindcraft.addon.crossover.christmas;
 
+import java.io.IOException;
 import java.util.Map.Entry;
 
 import mantle.pulsar.pulse.Handler;
 import mantle.pulsar.pulse.Pulse;
 import mod.mindcraft.addon.crossover.CrossoverMain;
+import mod.mindcraft.addon.crossover.christmas.food.IngotCookedSteak;
+import mod.mindcraft.addon.crossover.christmas.food.IngotSteak;
 import mod.mindcraft.addon.crossover.christmas.utils.BlockCustomOre;
 import mod.mindcraft.addon.crossover.christmas.utils.ItemCustom;
 import mod.mindcraft.addon.crossover.christmas.world.ChristmasWorldGenerator;
+import mod.mindcraft.addon.crossover.config.ConfigHandler;
+import mod.mindcraft.addon.crossover.config.Stats;
 import mod.mindcraft.addon.crossover.tconstruct.utils.BlockMetalCustom;
 import mod.mindcraft.addon.crossover.tconstruct.utils.TiCUtils;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.gen.structure.StructureMineshaftPieces.Cross;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
 import tconstruct.TConstruct;
-import tconstruct.library.TConstructRegistry;
 import tconstruct.library.crafting.FluidType;
-import tconstruct.library.crafting.LiquidCasting;
-import tconstruct.library.crafting.PatternBuilder;
 import tconstruct.library.crafting.Smeltery;
 import tconstruct.library.crafting.ToolBuilder;
 import tconstruct.library.tools.DualMaterialToolPart;
 import tconstruct.library.weaponry.AmmoItem;
-import tconstruct.tools.TinkerTools;
+import cofh.api.modhelpers.ThermalExpansionHelper;
+import cofh.thermalexpansion.item.TEItems;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -39,6 +42,9 @@ public class ChristmasThing {
 	public static DualMaterialToolPart partBall;
 	public static AmmoItem christmasBall;
 	public static Block christmasBallBlock;
+	private Stats toolStats;
+	private int meltTemp;
+	private int harvestLevel;
 	
 	public static Block oreYellowDecorative = new BlockCustomOre().setBlockTextureName("mcrossover:christmas/ore_yellow").setBlockName("ore.yellow").setHardness(2F);
 	public static Block oreRedDecorative = new BlockCustomOre().setBlockTextureName("mcrossover:christmas/ore_red").setBlockName("ore.red").setHardness(2F);
@@ -107,6 +113,9 @@ public class ChristmasThing {
 	public static Block fluidBlockBlueDecorative;
 	public static Block fluidBlockWhiteDecorative;
 	public static Block fluidBlockBlackDecorative;
+	
+	public static Item ingotSteak;
+	public static Item ingotSteakCooked;
 
 	public static Block[] fluidsBlocks = { fluidBlockYellowDecorative,
 			fluidBlockRedDecorative, fluidBlockGreenDecorative,
@@ -116,7 +125,14 @@ public class ChristmasThing {
 	
 	@Handler
 	public void preInit (FMLPreInitializationEvent e) {
-		
+		try {
+			toolStats = new ConfigHandler(e).initChristmasToolStats();
+			meltTemp = new ConfigHandler(e).initChristmasMeltTemperature();
+			harvestLevel = new ConfigHandler(e).initChristmasHarvestLevel();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 //		christmasBallBlock = new ChristmasBallBlock();
 //		
 //		partBall = new DualMaterialToolPart("_ball", "Ball");
@@ -162,6 +178,10 @@ public class ChristmasThing {
 				"BlackDecorative"};
 		String[][] names = { oreNames, blockNames, ingotNames, dustNames, fluidNames };
 		
+		ingotSteak = new IngotSteak();
+		ingotSteakCooked = new IngotCookedSteak();
+		GameRegistry.registerItem(ingotSteak, "ingotSteak");
+		GameRegistry.registerItem(ingotSteakCooked, "ingotSteakCooked");
 		registerAll(names);
 	}
 	
@@ -176,29 +196,46 @@ public class ChristmasThing {
 	
 	@Handler
 	public void postInit (FMLPostInitializationEvent e) {
-		
 	}
 	
 	private void registerAll (String [][] names) {
 		for (int i = 0; i < ores.length ;i++) {
 			System.out.println("Pass Number : " + i);
-			ores[i].setHarvestLevel("pickaxe", 2);
-			blocks[i].setHarvestLevel("pickaxe", 2);
+			ores[i].setHarvestLevel("pickaxe", harvestLevel);
+			blocks[i].setHarvestLevel("pickaxe", harvestLevel);
 			GameRegistry.registerBlock(ores[i], names[0][i]);
 			GameRegistry.registerBlock(blocks[i], names[1][i]);
 			GameRegistry.registerItem(dusts[i], names[3][i]);
 			GameRegistry.registerItem(ingots[i], names[2][i]);
 			Entry<Block, Fluid> entry;
-			entry = TiCUtils.registerMaterial(125+i, names[4][i], fluids[i], fluidsBlocks[i], blocks[i], 0, 550, true);
+			entry = TiCUtils.registerMaterial(toolStats.getMaterialId()+i, names[4][i], fluids[i], fluidsBlocks[i], blocks[i], 0, meltTemp, true);
 			fluids[i] = entry.getValue();
 			fluidsBlocks[i] = entry.getKey();
-			TiCUtils.registerPartMaterial(125+i, names[4][i], 2, 400, 700, 3, 1F, 0, 0.0F, chatColors [i], primaryColors [i], 20, 2.0F, 0.1F, 100F);
+			TiCUtils.registerPartMaterial(toolStats.getMaterialId() + i,
+					names[4][i], toolStats.getHarvesetLevel(),
+					toolStats.getDurability(), toolStats.getMiningSpeed(),
+					toolStats.getAttack(), toolStats.getHandleModifier(),
+					toolStats.getReinforced(), toolStats.getStonebound(),
+					chatColors[i], primaryColors[i], toolStats.getDrawSpeed(),
+					toolStats.getSpeedMax(), toolStats.getMass(),
+					toolStats.getFragility());
 			TiCUtils.addBasicMelting(new ItemStack(ingots[i]), true, new ItemStack(ores[i]), new ItemStack(blocks[i]), fluids[i]);
 			TiCUtils.addBasicMelting(new ItemStack(dusts[i]), true, new ItemStack(ores[i]), new ItemStack(blocks[i]), fluids[i]);
 			TiCUtils.addCasting(fluids[i], 125+i);
+			ThermalExpansionHelper.addPulverizerRecipe(4000, new ItemStack(ores[i]), new ItemStack(dusts[i], 2));
+			ThermalExpansionHelper.addPulverizerRecipe(2400, new ItemStack(ingots[i]), new ItemStack(dusts[i]));
+			ThermalExpansionHelper.addSmelterRecipe(4000, new ItemStack(ores[i]), new ItemStack(Blocks.sand), new ItemStack(ingots[i], 2), TEItems.slagRich);
 			Smeltery.addMelting(FluidType.getFluidType(fluids[i]), new ItemStack(dusts[i]), 0, TConstruct.ingotLiquidValue);
-			CrossoverMain.addOreProcess(ingots[i], blocks[i], ores[i]);
+			CrossoverMain.addOreProcess(ingots[i], blocks[i], ores[i], dusts[i]);
 			TiCUtils.registerUnknownThing(new ItemStack(ingots[i]), new ItemStack(blocks[i]), names[4][i]);
+			GameRegistry.addRecipe(new ItemStack (ingotSteak, 4, i), new Object [] {
+				" I ",
+				"ISI",
+				" I ",
+				'I', ingots[i],
+				'S', Items.beef
+			});
+			GameRegistry.addSmelting(new ItemStack(ingotSteak, 1, i), new ItemStack(ingotSteakCooked, 1, i), 0.6F);
 		}
 	}
 	

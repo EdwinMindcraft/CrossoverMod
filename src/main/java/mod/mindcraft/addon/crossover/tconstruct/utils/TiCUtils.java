@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import mod.mindcraft.addon.crossover.config.Stats;
 import mod.mindcraft.addon.crossover.fluids.CrossoverFluidBlock;
 import mod.mindcraft.addon.crossover.tconstruct.metallurgy.enums.EnumMetallurgyMaterials;
 import mod.mindcraft.addon.crossover.tconstruct.metallurgy.enums.EnumMetallurgyMaterialsITT;
@@ -93,6 +94,9 @@ public class TiCUtils {
 	
 	public static void registerPartMaterial(int materialId, String name, EnumMetallurgyMaterialsITT mat) {
 		registerPartMaterial(materialId, name, mat.getMiningLevel(), mat.getDurability(), mat.getMiningSpeed(), mat.getDamage(), mat.getHandleModifier(), mat.getReinforced(), mat.getStonebound(), mat.getChatColor(), mat.getColor(), mat.getDrawSpeed(), mat.getSpeedMax(), mat.getMass(), mat.getFragility());
+	}
+	public static void registerPartMaterial(String name, String chatColor, int color, Stats mat) {
+		registerPartMaterial(mat.getMaterialId(), name, mat.getHarvesetLevel(), mat.getDurability(), mat.getMiningSpeed(), mat.getAttack(), mat.getHandleModifier(), mat.getReinforced(), mat.getStonebound(), chatColor, color, mat.getDrawSpeed(), mat.getSpeedMax(), mat.getMass(), mat.getFragility());
 	}
 	
 	public static void registerPartMaterial(int materialId, String name, int harvesetLevel, int durability, int miningSpeed, int attack, float handleModifier, int reinforced, float stonebound, String style, int primaryColor, int drawSpeed, float speedMax, float mass, float fragility) {

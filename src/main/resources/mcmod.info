@@ -1,0 +1,16 @@
+[
+{
+  "modid": "mcrossover",
+  "name": "Mindcrafts Crossover Mod",
+  "description": "Merging a lot of mods together",
+  "version": "${version}",
+  "mcversion": "1.7.10",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["EdwinMindcraft"],
+  "credits": "boni and mdiyo for TConstruct, TeamCoFH for the Thermal Stuff, Metallurgy team for there awesome mod",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

@@ -1,13 +1,15 @@
 package mod.mindcraft.addon.crossover.tconstruct.enderio;
 
+import java.io.IOException;
 import java.util.Map.Entry;
 
 import mantle.pulsar.pulse.Handler;
 import mantle.pulsar.pulse.Pulse;
 import mod.mindcraft.addon.crossover.CrossoverMain;
+import mod.mindcraft.addon.crossover.config.ConfigHandler;
+import mod.mindcraft.addon.crossover.config.Stats;
 import mod.mindcraft.addon.crossover.tconstruct.utils.TiCUtils;
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fluids.Fluid;
@@ -46,9 +48,31 @@ public class EnderIOSupport {
 	public static ItemStack ingotPhasedIron;
 	public static ItemStack ingotDarkSteel;
 	public static ItemStack ingotSoularium;
+	
+	private Stats electricalSteelStats;
+	private Stats energiticAlloyStats;
+	private Stats phasedGoldStats;
+	private Stats redstoneAlloyStats;
+	private Stats conductiveIronStats;
+	private Stats phasedIronStats;
+	private Stats darkSteelStats;
+	private Stats soulariumStats;
 
 	@Handler
-	public static void preInit (FMLPreInitializationEvent e) {
+	public void preInit (FMLPreInitializationEvent e) {
+		
+		try {
+			electricalSteelStats = new ConfigHandler(e).initEnderIOElectricalSteelStats();
+			energiticAlloyStats = new ConfigHandler(e).initEnderIOEnergiticAlloyStats();
+			phasedGoldStats = new ConfigHandler(e).initEnderIOPhasedGoldStats();
+			redstoneAlloyStats = new ConfigHandler(e).initEnderIORedstoneAlloyStats();
+			conductiveIronStats = new ConfigHandler(e).initEnderIOConductiveIronStats();
+			phasedIronStats = new ConfigHandler(e).initEnderIOPhasedIronStats();
+			darkSteelStats = new ConfigHandler(e).initEnderIODarkSteelStats();
+			soulariumStats = new ConfigHandler(e).initEnderIOSoulariumStats();
+		} catch (IOException er) {
+			er.printStackTrace();
+		}
 		
 		ingotElectricalSteel = CrossoverMain.getItemStackFromOreDictinaryName("ingotElectricalSteel");
 		ingotEnergiticAlloy = CrossoverMain.getItemStackFromOreDictinaryName("ingotEnergeticAlloy");
@@ -70,12 +94,12 @@ public class EnderIOSupport {
 		Entry<Block, Fluid> darkSteelEntry;
 		Entry<Block, Fluid> soulariumEntry;
 		
-		electricalSteelEntry = TiCUtils.registerMaterial(35, "electrical.steel", moltenElectricalSteelFluid, moltenElectricalSteel, ingotStorage, 0, 550, true);
-		energiticAlloyEntry = TiCUtils.registerMaterial(36, "energitic.alloy", moltenEnergiticAlloyFluid, moltenEnergiticAlloy, ingotStorage, 1, 550, true);
-		phasedGoldEntry = TiCUtils.registerMaterial(37, "phased.gold", moltenPhasedGoldFluid, moltenPhasedGold, ingotStorage, 2, 550, true);
-		redstoneAlloyEntry = TiCUtils.registerMaterial(38, "redstone.alloy", moltenRedstoneAlloyFluid, moltenRedstoneAlloy, ingotStorage, 3, 550, true);
+		electricalSteelEntry = TiCUtils.registerMaterial(electricalSteelStats.getMaterialId(), "electrical.steel", moltenElectricalSteelFluid, moltenElectricalSteel, ingotStorage, 0, 550, true);
+		energiticAlloyEntry = TiCUtils.registerMaterial(energiticAlloyStats.getMaterialId(), "energitic.alloy", moltenEnergiticAlloyFluid, moltenEnergiticAlloy, ingotStorage, 1, 550, true);
+		phasedGoldEntry = TiCUtils.registerMaterial(phasedGoldStats.getMaterialId(), "phased.gold", moltenPhasedGoldFluid, moltenPhasedGold, ingotStorage, 2, 550, true);
+		redstoneAlloyEntry = TiCUtils.registerMaterial(redstoneAlloyStats.getMaterialId(), "redstone.alloy", moltenRedstoneAlloyFluid, moltenRedstoneAlloy, ingotStorage, 3, 550, true);
 		conductiveIronEntry = TiCUtils.registerMaterial(39, "conductive.iron", moltenConductiveIronFluid, moltenConductiveIron, ingotStorage, 4, 550, true);
-		phasedIronEntry = TiCUtils.registerMaterial(40, "phased.iron", moltenPhasedIronFluid, moltenPhasedIron, ingotStorage, 5, 550, true);
+		phasedIronEntry = TiCUtils.registerMaterial(43, "phased.iron", moltenPhasedIronFluid, moltenPhasedIron, ingotStorage, 5, 550, true);
 		darkSteelEntry = TiCUtils.registerMaterial(41, "dark.steel", moltenDarkSteelFluid, moltenDarkSteel, ingotStorage, 6, 550, true);
 		soulariumEntry = TiCUtils.registerMaterial(42, "soularium", moltenSoulariumFluid, moltenSoularium, ingotStorage, 7, 550, true);
 		
@@ -97,19 +121,19 @@ public class EnderIOSupport {
 		moltenDarkSteelFluid = darkSteelEntry.getValue();
 		moltenSoulariumFluid = soulariumEntry.getValue();
 
-		TiCUtils.registerPartMaterial(35, "ElectricalSteel", 2, 500, 500, 2, 1.2F, 1, 0F, EnumChatFormatting.GRAY.toString(), 0x787878, 45, 2F, 0.25F, 1F);
-		TiCUtils.registerPartMaterial(36, "EnergiticAlloy", 1, 250, 750, 3, 0.75F, 0, 0F, EnumChatFormatting.GOLD.toString(), 0xc26a01, 45, 4F, 1F, 1F);
-		TiCUtils.registerPartMaterial(37, "PhasedGold", 2, 300, 700, 4, 0.75F, 0, 0F, EnumChatFormatting.GREEN.toString(), 0x8aac25, 45, 4F, 1F, 1F);
-		TiCUtils.registerPartMaterial(38, "RedstoneAlloy", 0, 100, 900, 1, 1.5F, 0, 0F, EnumChatFormatting.RED.toString(), 0x781919, 45, 6F, 0.05F, 1F);
-		TiCUtils.registerPartMaterial(39, "ConductiveIron", 2, 500, 500, 3, 1F, 1, 0F, EnumChatFormatting.RED.toString(), 0xd2a6a1, 45, 2F, 0.25F, 1F);
-		TiCUtils.registerPartMaterial(40, "PhasedIron", 3, 750, 700, 3, 1.5F, 1, 0F, EnumChatFormatting.GREEN.toString(), 0x5b8364, 45, 2F, 0.25F, 1F);
-		TiCUtils.registerPartMaterial(41, "DarkSteel", 4, 1000, 1000, 5, 2F, 2, 0F, EnumChatFormatting.DARK_GRAY.toString(), 0x2a2a2a, 45, 4F, 1F, 1F);
-		TiCUtils.registerPartMaterial(42, "Soularium", 4, 1000, 1000, 5, 1.8F, 2, 0F, EnumChatFormatting.GOLD.toString(), 0x5a3e25, 45, 6F, 0.15F, 1F);
+		TiCUtils.registerPartMaterial("ElectricalSteel", EnumChatFormatting.GRAY.toString(), 0x787878, electricalSteelStats);
+		TiCUtils.registerPartMaterial("EnergiticAlloy", EnumChatFormatting.GOLD.toString(), 0xc26a01, energiticAlloyStats);
+		TiCUtils.registerPartMaterial("PhasedGold", EnumChatFormatting.GREEN.toString(), 0x8aac25, phasedGoldStats);
+		TiCUtils.registerPartMaterial("RedstoneAlloy", EnumChatFormatting.RED.toString(), 0x781919, redstoneAlloyStats);
+		TiCUtils.registerPartMaterial("ConductiveIron", EnumChatFormatting.RED.toString(), 0xd2a6a1, conductiveIronStats);
+		TiCUtils.registerPartMaterial("PhasedIron", EnumChatFormatting.GREEN.toString(), 0x5b8364, phasedIronStats);
+		TiCUtils.registerPartMaterial("DarkSteel", EnumChatFormatting.DARK_GRAY.toString(), 0x2a2a2a, darkSteelStats);
+		TiCUtils.registerPartMaterial("Soularium", EnumChatFormatting.GOLD.toString(), 0x5a3e25, soulariumStats);
 		
 	}
 	
 	@Handler
-	public static void init (FMLInitializationEvent e) {
+	public void init (FMLInitializationEvent e) {
 
 		Block ingotStorage = CrossoverMain.getBlockFromOreDictinaryName("blockElectricalSteel");
 
@@ -133,7 +157,7 @@ public class EnderIOSupport {
 	}
 	
 	@Handler
-	public static void postInit (FMLPostInitializationEvent e) {
+	public void postInit (FMLPostInitializationEvent e) {
 		
 	}
 }
